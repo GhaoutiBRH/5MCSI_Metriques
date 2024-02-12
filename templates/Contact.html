@@ -35,16 +35,22 @@
             border: 1px solid #ccc;
             box-sizing: border-box;
         }
-        input[type="submit"] {
+        input[type="submit"], .btn-back {
             background-color: #4CAF50;
             color: white;
             padding: 15px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
         }
-        input[type="submit"]:hover {
+        input[type="submit"]:hover, .btn-back:hover {
             background-color: #45a049;
+        }
+        .btn-back {
+            background-color: #808080;
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -63,8 +69,10 @@
         <textarea id="message" name="message" rows="4" required></textarea>
 
         <input type="submit" value="Envoyer">
+        <a href="https://bourahla.alwaysdata.net/" class="btn-back">Retour à la page d'accueil</a>
     </form>
 </div>
 
 </body>
 </html>
+
