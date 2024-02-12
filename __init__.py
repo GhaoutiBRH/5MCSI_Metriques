@@ -44,7 +44,6 @@ def extract_minutes(date_string):
     return date_object.minute
 
 
-
 @app.route("/contact/")
 def MaPremiereAPI():
     return "<h2>Ma page de contact</h2>"
