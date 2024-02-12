@@ -5,8 +5,22 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 from urllib.request import urlopen
 import sqlite3
+import os
                                                                                                                                        
 app = Flask(__name__)
+
+
+
+# Chemin vers le répertoire où se trouve votre script Flask
+directory = os.path.dirname(os.path.realpath(__file__))
+
+# Chemin vers le répertoire 'static'
+static_directory = os.path.join(directory, 'static')
+
+# Création du répertoire 'static' s'il n'existe pas déjà
+if not os.path.exists(static_directory):
+    os.makedirs(static_directory)
+
 
 @app.route('/commits/')
 def show_commit_graph():
