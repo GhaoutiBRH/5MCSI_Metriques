@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Commit Graph</title>
+    <title>Commit Counts</title>
 </head>
 <body>
-    <img src="{{ url_for('static', filename='commit_graph.png') }}" alt="Commit Graph">
+    <h1>Commit Counts per Minute:</h1>
+    <pre>{{ commit_counts_text }}</pre>
 </body>
 </html>
