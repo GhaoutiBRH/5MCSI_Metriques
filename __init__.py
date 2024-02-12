@@ -10,7 +10,7 @@ app = Flask(__name__)
 def get_commit_data():
     url = 'https://api.github.com/repos/OpenRSI/5MCSI_Metriques/commits'
     try:
-        with urllib.request.urlopen(url) as response:
+        with urlopen(url) as response:
             data = response.read().decode('utf-8')
             return json.loads(data)
     except urllib.error.HTTPError as e:
@@ -42,6 +42,7 @@ def extract_minutes(date_string):
     from datetime import datetime
     date_object = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
     return date_object.minute
+
 
 
 @app.route("/contact/")
