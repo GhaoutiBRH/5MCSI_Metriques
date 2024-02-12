@@ -7,14 +7,23 @@ import sqlite3
 
                                                                                                                                        
 app = Flask(__name__)
+def get_commit_data():
+    url = 'https://api.github.com/repos/OpenRSI/5MCSI_Metriques/commits'
+    try:
+        with urllib.request.urlopen(url) as response:
+            data = response.read().decode('utf-8')
+            return json.loads(data)
+    except urllib.error.HTTPError as e:
+        # Gérer les erreurs si la requête échoue
+        print(f"Erreur: Impossible de récupérer les données sur les commits (code {e.code})")
+        return None
+
 @app.route('/commits/')
 def show_commit_counts():
     # Extract commit data from GitHub API
-    commits_data = [
-        {"commit": {"author": {"date": "2024-02-11T11:57:27Z"}}},  # Exemple de données factices
-        {"commit": {"author": {"date": "2024-02-11T12:01:45Z"}}},
-        # Ajoutez les données réelles provenant de l'API GitHub ici
-    ]
+    commits_data = get_commit_data()
+    if not commits_data:
+        return "Impossible de récupérer les données sur les commits."
 
     # Process commit data to count commits per minute
     commits_per_minute = {}
@@ -30,6 +39,7 @@ def show_commit_counts():
 
 # Helper function to extract minutes from date string
 def extract_minutes(date_string):
+    from datetime import datetime
     date_object = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
     return date_object.minute
 
