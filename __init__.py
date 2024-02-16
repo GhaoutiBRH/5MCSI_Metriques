@@ -38,6 +38,7 @@ def show_commit_counts():
         return "Impossible de récupérer les données sur les commits."
 
     # Process commit data to count commits per minute
+  #
     commits_per_minute = {}
     for commit in commits_data:
         commit_date = commit['commit']['author']['date']
